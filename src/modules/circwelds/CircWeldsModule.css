@@ -1,0 +1,523 @@
+/* Circ Welds Module - Matching Long Welds / Nozzles Module Style */
+.circwelds-module {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+}
+
+.module-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 10px 16px;
+  background: #16213e;
+  border-bottom: 1px solid #2d3748;
+  flex-shrink: 0;
+}
+
+.toolbar-left {
+  display: flex;
+  gap: 4px;
+}
+
+.toolbar-left button {
+  padding: 6px 14px;
+  font-size: 12px;
+  background: #2d3748;
+  border: 1px solid #4a5568;
+  border-radius: 4px;
+  color: #8892b0;
+  cursor: pointer;
+}
+
+.toolbar-left button.active {
+  background: #ff6b35;
+  border-color: #ff6b35;
+  color: white;
+}
+
+.toolbar-center {
+  flex: 1;
+}
+
+.btn-add {
+  padding: 6px 16px;
+  font-size: 12px;
+  font-weight: 600;
+  background: #4ade80;
+  border: none;
+  border-radius: 4px;
+  color: #0f0f23;
+  cursor: pointer;
+}
+
+.btn-add:hover {
+  background: #22c55e;
+}
+
+.toolbar-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.stats {
+  font-size: 13px;
+  color: #8892b0;
+}
+
+/* Table View */
+.weld-table-container {
+  flex: 1;
+  overflow: auto;
+  padding: 16px;
+}
+
+.weld-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+  background: #16213e;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.weld-table th {
+  position: sticky;
+  top: 0;
+  background: #0f0f23;
+  padding: 10px 8px;
+  text-align: left;
+  font-weight: 600;
+  color: #8892b0;
+  text-transform: uppercase;
+  font-size: 10px;
+  border-bottom: 2px solid #ff6b35;
+}
+
+.weld-table td {
+  padding: 8px;
+  border-bottom: 1px solid #2d3748;
+}
+
+.weld-table tbody tr:hover {
+  background: rgba(255, 107, 53, 0.05);
+}
+
+.weld-table tbody tr.selected {
+  background: rgba(255, 107, 53, 0.1);
+}
+
+.tag-input {
+  width: 100px;
+  padding: 4px 6px;
+  font-size: 12px;
+  font-weight: 600;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 3px;
+  color: #ff6b35;
+}
+
+.tag-input:focus {
+  background: #0f0f23;
+  border-color: #ff6b35;
+  outline: none;
+}
+
+.qty-input {
+  width: 40px;
+  padding: 4px 6px;
+  font-size: 12px;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 3px;
+  color: #e0e0e0;
+  text-align: center;
+}
+
+.qty-input:focus {
+  background: #0f0f23;
+  border-color: #ff6b35;
+  outline: none;
+}
+
+.weld-time {
+  color: #ff6b35;
+  font-weight: 600;
+}
+
+.total-cell {
+  font-weight: 600;
+  color: #64b5f6;
+}
+
+.grand-total {
+  color: #ff6b35 !important;
+  font-size: 14px !important;
+}
+
+.actions-cell button {
+  padding: 4px 6px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  opacity: 0.7;
+}
+
+.actions-cell button:hover:not(:disabled) {
+  opacity: 1;
+}
+
+.actions-cell button:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.totals-row {
+  background: #0f0f23 !important;
+}
+
+.totals-row td {
+  padding: 12px 8px;
+  border-top: 2px solid #ff6b35;
+}
+
+/* Editor View */
+.editor-grid {
+  display: grid;
+  grid-template-columns: 320px 1fr 280px;
+  gap: 12px;
+  padding: 12px;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.editor-panel {
+  background: #16213e;
+  border-radius: 8px;
+  padding: 12px;
+  overflow-y: auto;
+}
+
+.editor-panel.center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-width: 350px;
+  background: #f5f5f5;
+}
+
+.editor-panel.center .diagram-caption {
+  color: #333;
+}
+
+.weld-selector select {
+  width: 100%;
+  padding: 8px 10px;
+  font-size: 13px;
+  font-weight: 600;
+  background: #0f0f23;
+  border: 2px solid #ff6b35;
+  border-radius: 4px;
+  color: #ff6b35;
+  cursor: pointer;
+  margin-bottom: 12px;
+}
+
+.section {
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 6px;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.section h3 {
+  font-size: 12px;
+  font-weight: 600;
+  color: #ff6b35;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+}
+
+.input-row {
+  display: flex;
+  gap: 8px;
+}
+
+.input-row .input-group {
+  flex: 1;
+}
+
+.input-group {
+  margin-bottom: 6px;
+}
+
+.input-group label {
+  display: block;
+  font-size: 10px;
+  color: #8892b0;
+  margin-bottom: 2px;
+  text-transform: uppercase;
+}
+
+.input-group input,
+.input-group select {
+  width: 100%;
+  padding: 6px 8px;
+  font-size: 13px;
+  background: #0f0f23;
+  border: 1px solid #2d3748;
+  border-radius: 4px;
+  color: #e0e0e0;
+}
+
+.input-group input:focus,
+.input-group select:focus {
+  outline: none;
+  border-color: #ff6b35;
+}
+
+.circ-display {
+  font-size: 11px;
+  color: #4ade80;
+  background: rgba(74, 222, 128, 0.1);
+  padding: 6px 10px;
+  border-radius: 4px;
+  margin-bottom: 8px;
+  text-align: center;
+  font-weight: 600;
+}
+
+.groove-info {
+  font-size: 10px;
+  color: #64b5f6;
+  background: rgba(33, 150, 243, 0.1);
+  padding: 4px 8px;
+  border-radius: 4px;
+  margin-bottom: 8px;
+  text-align: center;
+}
+
+.side-note {
+  font-size: 10px;
+  color: #8892b0;
+  font-style: italic;
+  margin-top: 6px;
+  text-align: center;
+}
+
+.layers-header {
+  display: grid;
+  grid-template-columns: 1fr 70px 24px;
+  gap: 6px;
+  font-size: 9px;
+  color: #8892b0;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+
+.layer-row {
+  display: grid;
+  grid-template-columns: 1fr 95px 28px;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+
+.layer-row select,
+.layer-row input {
+  padding: 5px 6px;
+  font-size: 12px;
+  background: #0f0f23;
+  border: 1px solid #2d3748;
+  border-radius: 4px;
+  color: #e0e0e0;
+}
+
+.width-input {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.width-input input {
+  width: 60px;
+  padding: 5px 18px 5px 6px;
+  text-align: right;
+}
+
+.width-input input::-webkit-inner-spin-button {
+  margin-left: 6px;
+}
+
+.width-input span {
+  font-size: 10px;
+  color: #8892b0;
+}
+
+.btn-remove {
+  background: #e53935;
+  border: none;
+  border-radius: 4px;
+  color: white;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.btn-remove:disabled {
+  opacity: 0.3;
+}
+
+.btn-add-layer {
+  width: 100%;
+  padding: 5px;
+  font-size: 11px;
+  background: transparent;
+  border: 1px dashed #2d3748;
+  border-radius: 4px;
+  color: #8892b0;
+  cursor: pointer;
+}
+
+.btn-add-layer:hover {
+  border-color: #ff6b35;
+  color: #ff6b35;
+}
+
+.weld-diagram {
+  width: 100%;
+  height: auto;
+  min-height: 250px;
+  max-height: calc(100vh - 280px);
+}
+
+.diagram-caption {
+  font-size: 11px;
+  color: #8892b0;
+  margin-top: 8px;
+}
+
+.result-card {
+  background: linear-gradient(135deg, #ff6b35 0%, #e55a2b 100%);
+  border-radius: 8px;
+  padding: 16px;
+  text-align: center;
+  color: white;
+  margin-bottom: 12px;
+}
+
+.result-card h3 {
+  font-size: 10px;
+  opacity: 0.8;
+  margin-bottom: 4px;
+}
+
+.result-card .value {
+  font-size: 36px;
+  font-weight: 700;
+}
+
+.result-card .unit {
+  font-size: 12px;
+  opacity: 0.8;
+}
+
+.results-summary {
+  background: #0f0f23;
+  border-radius: 6px;
+  padding: 8px;
+  margin-bottom: 12px;
+}
+
+.result-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 4px 6px;
+  font-size: 11px;
+  color: #8892b0;
+}
+
+.result-row span:last-child {
+  color: #e0e0e0;
+}
+
+.result-row.highlight {
+  background: rgba(255, 107, 53, 0.1);
+  border-radius: 4px;
+}
+
+.result-row.highlight span:last-child {
+  color: #ff6b35;
+  font-weight: 600;
+}
+
+.activity-list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.act-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 8px;
+  background: #0f0f23;
+  border-radius: 4px;
+  font-size: 11px;
+}
+
+.act-row label {
+  color: #8892b0;
+}
+
+.act-row input {
+  width: 80px;
+  padding: 4px 28px 4px 6px;
+  font-size: 11px;
+  background: #16213e;
+  border: 1px solid #2d3748;
+  border-radius: 3px;
+  color: #e0e0e0;
+  text-align: right;
+}
+
+/* Give more space for spinner buttons */
+.act-row input::-webkit-inner-spin-button {
+  margin-left: 8px;
+}
+
+.act-row.calc {
+  background: rgba(255, 107, 53, 0.1);
+  border: 1px dashed rgba(255, 107, 53, 0.3);
+}
+
+.act-row.calc span {
+  color: #ff6b35;
+  font-weight: 600;
+}
+
+.codes-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 4px;
+}
+
+.code-box {
+  display: flex;
+  justify-content: space-between;
+  padding: 5px 8px;
+  background: #0f0f23;
+  border-radius: 4px;
+  font-size: 11px;
+}
+
+.code-box .code {
+  color: #64b5f6;
+  font-weight: 600;
+}
+
