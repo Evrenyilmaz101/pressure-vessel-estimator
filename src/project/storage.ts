@@ -99,9 +99,11 @@ export function createEmptyProject(): VesselProject {
       nozzles: null,
       longwelds: null,
       circwelds: null,
+      pipejoints: null,
       internals: null,
       externals: null,
     },
   };
 }
+
 

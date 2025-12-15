@@ -3,7 +3,7 @@ import type { SharedSettings, ModuleSummary } from '../shared/types';
 /**
  * Module identifiers
  */
-export type ModuleId = 'nozzles' | 'longwelds' | 'circwelds' | 'internals' | 'externals';
+export type ModuleId = 'nozzles' | 'longwelds' | 'circwelds' | 'pipejoints' | 'internals' | 'externals';
 
 /**
  * Module metadata
@@ -22,6 +22,7 @@ export const MODULES: ModuleInfo[] = [
   { id: 'nozzles', name: 'Nozzles', icon: '🔩', description: 'Nozzle-to-shell welds' },
   { id: 'longwelds', name: 'Long Welds', icon: '📏', description: 'Longitudinal seam welds' },
   { id: 'circwelds', name: 'Circ Welds', icon: '⭕', description: 'Circumferential welds' },
+  { id: 'pipejoints', name: 'Pipe Joints', icon: '🔗', description: 'Pipe butt weld joints' },
   { id: 'internals', name: 'Internals', icon: '📦', description: 'Internal attachments' },
   { id: 'externals', name: 'Externals', icon: '🔧', description: 'External attachments' },
 ];
@@ -42,6 +43,7 @@ export interface VesselProject {
     nozzles?: unknown;      // NozzleItem[]
     longwelds?: unknown;    // LongWeldItem[]
     circwelds?: unknown;    // CircWeldItem[]
+    pipejoints?: unknown;   // PipeJointItem[]
     internals?: unknown;    // InternalItem[]
     externals?: unknown;    // ExternalItem[]
   };
@@ -60,4 +62,5 @@ export interface ProjectState {
   hasUnsavedChanges: boolean;
   activeModule: ModuleId;
 }
+
 

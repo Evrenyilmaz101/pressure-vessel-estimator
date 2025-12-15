@@ -80,3 +80,5 @@ function getEmptyActivityCodes(): NozzleActivityCodes {
   return { CUTNOZZ: 0, FNOZZ: 0, PREHEAT: 0, WNOZZ: 0, BACGRI: 0, MATCUT: 0, NDE: 0 };
 }
 
+
+

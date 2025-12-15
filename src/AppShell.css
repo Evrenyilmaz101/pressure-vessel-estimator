@@ -544,3 +544,387 @@
   color: #ba68c8;
 }
 
+/* Settings Tabs */
+.settings-tabs {
+  display: flex;
+  gap: 8px;
+}
+
+.settings-tabs button {
+  padding: 8px 16px;
+  font-size: 13px;
+  font-weight: 500;
+  background: #2d3748;
+  border: 1px solid #4a5568;
+  border-radius: 6px;
+  color: #8892b0;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.settings-tabs button:hover {
+  background: #4a5568;
+  color: #e0e0e0;
+}
+
+.settings-tabs button.active {
+  background: #ff6b35;
+  border-color: #ff6b35;
+  color: white;
+}
+
+/* Pipe Joint Settings Panel */
+.pipe-settings-panel {
+  padding: 0;
+}
+
+.pipe-settings-intro {
+  margin-bottom: 20px;
+}
+
+.pipe-settings-intro h3 {
+  font-size: 18px;
+  color: #ff6b35;
+  margin-bottom: 8px;
+}
+
+.pipe-settings-intro p {
+  color: #8892b0;
+  font-size: 13px;
+}
+
+.pipe-settings-layout {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 20px;
+}
+
+.pipe-selector-section {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.pipe-selector {
+  background: #16213e;
+  border-radius: 8px;
+  padding: 16px;
+}
+
+.pipe-selector h4 {
+  font-size: 12px;
+  color: #ff6b35;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 12px;
+}
+
+.selector-row {
+  display: flex;
+  gap: 12px;
+}
+
+.selector-group {
+  flex: 1;
+}
+
+.selector-group label {
+  display: block;
+  font-size: 10px;
+  color: #8892b0;
+  margin-bottom: 4px;
+  text-transform: uppercase;
+}
+
+.selector-group select {
+  width: 100%;
+  padding: 8px 10px;
+  font-size: 13px;
+  background: #0f0f23;
+  border: 1px solid #2d3748;
+  border-radius: 4px;
+  color: #e0e0e0;
+  cursor: pointer;
+}
+
+.selector-group select:focus {
+  outline: none;
+  border-color: #ff6b35;
+}
+
+.pipe-dims-info {
+  display: flex;
+  gap: 12px;
+  margin-top: 12px;
+  padding: 8px 10px;
+  background: rgba(74, 222, 128, 0.1);
+  border-radius: 4px;
+  font-size: 11px;
+  color: #4ade80;
+}
+
+.pipe-dims-info .configured {
+  color: #4ade80;
+  margin-left: auto;
+}
+
+.pipe-dims-info .not-configured {
+  color: #ffc107;
+  margin-left: auto;
+}
+
+.configured-list {
+  background: #16213e;
+  border-radius: 8px;
+  padding: 16px;
+  flex: 1;
+  overflow-y: auto;
+  max-height: 400px;
+}
+
+.configured-list h4 {
+  font-size: 12px;
+  color: #ff6b35;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 12px;
+}
+
+.configured-items {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.empty-message {
+  color: #8892b0;
+  font-size: 12px;
+  font-style: italic;
+  text-align: center;
+  padding: 20px;
+}
+
+.configured-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 10px;
+  background: #0f0f23;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.configured-item:hover {
+  background: rgba(255, 107, 53, 0.1);
+}
+
+.configured-item.selected {
+  background: rgba(255, 107, 53, 0.15);
+  border-left: 3px solid #ff6b35;
+}
+
+.configured-item .item-size {
+  font-size: 12px;
+  font-weight: 600;
+  color: #e0e0e0;
+  flex: 1;
+}
+
+.configured-item .item-dims {
+  font-size: 11px;
+  color: #8892b0;
+}
+
+.btn-delete-preset {
+  padding: 2px 6px;
+  background: transparent;
+  border: none;
+  color: #e53935;
+  font-size: 14px;
+  cursor: pointer;
+  opacity: 0.6;
+  transition: opacity 0.2s;
+}
+
+.btn-delete-preset:hover {
+  opacity: 1;
+}
+
+.pipe-config-section {
+  background: #16213e;
+  border-radius: 8px;
+  padding: 20px;
+}
+
+.preset-view h4,
+.preset-editor h4 {
+  font-size: 16px;
+  color: #ff6b35;
+  margin-bottom: 16px;
+}
+
+.preset-details {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.detail-group {
+  background: #0f0f23;
+  border-radius: 6px;
+  padding: 12px;
+}
+
+.detail-group h5 {
+  font-size: 10px;
+  color: #8892b0;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 8px;
+}
+
+.detail-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 4px 0;
+  font-size: 12px;
+}
+
+.detail-row span:first-child {
+  color: #8892b0;
+}
+
+.detail-row span:last-child {
+  color: #e0e0e0;
+  font-weight: 500;
+}
+
+.btn-configure {
+  width: 100%;
+  padding: 12px;
+  font-size: 14px;
+  font-weight: 600;
+  background: #4ade80;
+  border: none;
+  border-radius: 6px;
+  color: #0f0f23;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.btn-configure:hover {
+  background: #22c55e;
+}
+
+/* Preset Editor */
+.preset-editor {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.editor-section {
+  background: #0f0f23;
+  border-radius: 6px;
+  padding: 12px;
+}
+
+.editor-section h5 {
+  font-size: 11px;
+  color: #8892b0;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 10px;
+}
+
+.editor-row {
+  display: flex;
+  gap: 12px;
+}
+
+.editor-field {
+  flex: 1;
+}
+
+.editor-field label {
+  display: block;
+  font-size: 10px;
+  color: #8892b0;
+  margin-bottom: 4px;
+}
+
+.editor-field input,
+.editor-field select {
+  width: 100%;
+  padding: 8px 10px;
+  font-size: 13px;
+  background: #16213e;
+  border: 1px solid #2d3748;
+  border-radius: 4px;
+  color: #e0e0e0;
+}
+
+.editor-field input:focus,
+.editor-field select:focus {
+  outline: none;
+  border-color: #ff6b35;
+}
+
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: #e0e0e0;
+  cursor: pointer;
+}
+
+.checkbox-label input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+}
+
+.editor-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.btn-cancel {
+  flex: 1;
+  padding: 10px;
+  font-size: 13px;
+  font-weight: 500;
+  background: #2d3748;
+  border: 1px solid #4a5568;
+  border-radius: 6px;
+  color: #8892b0;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-cancel:hover {
+  background: #4a5568;
+  color: #e0e0e0;
+}
+
+.btn-save-preset {
+  flex: 2;
+  padding: 10px;
+  font-size: 13px;
+  font-weight: 600;
+  background: #ff6b35;
+  border: none;
+  border-radius: 6px;
+  color: white;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.btn-save-preset:hover {
+  background: #e55a2b;
+}
+

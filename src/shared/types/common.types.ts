@@ -77,3 +77,5 @@ export interface SharedSettings {
   operatorFactors: OperatorFactorsByThickness;
 }
 
+
+
