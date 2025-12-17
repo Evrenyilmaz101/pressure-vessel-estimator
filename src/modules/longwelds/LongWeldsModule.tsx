@@ -331,7 +331,7 @@ export function LongWeldsModule() {
                       <td className="actions-cell">
                         <button className="btn-action" onClick={() => { setSelectedWeldId(weld.id); setActiveTab('editor'); }}>Edit</button>
                         <button className="btn-action" onClick={() => duplicateWeld(weld)}>Duplicate</button>
-                        <button className="btn-action btn-delete" onClick={() => deleteWeld(weld.id)} disabled={welds.length <= 1}>Delete</button>
+                        <button className="btn-action btn-delete" onClick={() => deleteWeld(weld.id)}>Delete</button>
                       </td>
                     </tr>
                   );

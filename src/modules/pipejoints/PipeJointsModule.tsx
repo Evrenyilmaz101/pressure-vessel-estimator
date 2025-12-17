@@ -280,7 +280,7 @@ export function PipeJointsModule() {
                     <td className="actions-cell">
                       <button className="btn-action" onClick={() => { setSelectedJointId(joint.id); setActiveTab('editor'); }}>Edit</button>
                       <button className="btn-action" onClick={() => duplicateJoint(joint)}>Duplicate</button>
-                      <button className="btn-action btn-delete" onClick={() => deleteJoint(joint.id)} disabled={joints.length <= 1}>Delete</button>
+                      <button className="btn-action btn-delete" onClick={() => deleteJoint(joint.id)}>Delete</button>
                     </td>
                   </tr>
                 );

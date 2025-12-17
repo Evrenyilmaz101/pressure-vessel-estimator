@@ -283,7 +283,7 @@ export function NozzlesModule() {
                     <td className="actions-cell">
                       <button className="btn-action" onClick={() => { setSelectedId(nozzle.id); setView('editor'); }}>Edit</button>
                       <button className="btn-action" onClick={() => duplicateNozzle(nozzle)}>Duplicate</button>
-                      <button className="btn-action btn-delete" onClick={() => deleteNozzle(nozzle.id)} disabled={nozzles.length <= 1}>Delete</button>
+                      <button className="btn-action btn-delete" onClick={() => deleteNozzle(nozzle.id)}>Delete</button>
                     </td>
                   </tr>
                 );
