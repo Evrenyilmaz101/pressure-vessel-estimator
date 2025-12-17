@@ -49,6 +49,9 @@ export function OfferModule() {
   const { currentProject, save } = useProject();
   const [expandedSections, setExpandedSections] = useState<Set<SectionId>>(new Set(['project']));
   
+  // Simple text state for equipment description (avoids parsing on every keystroke)
+  const [equipmentText, setEquipmentText] = useState('');
+  
   // Load offer data from project or create default
   const [offerData, setOfferData] = useState<OfferData>(() => {
     const stored = currentProject?.modules?.offer as OfferData | undefined;
@@ -63,47 +66,27 @@ export function OfferModule() {
     return defaultData;
   });
 
-  // Auto-populate from estimate data
+  // Sync project details when project changes (job number, description)
   useEffect(() => {
     if (!currentProject) return;
-
-    // Auto-populate equipment from modules
-    const equipment: { tag: string; module: string }[] = [];
     
-    // Nozzles
-    const nozzles = currentProject.modules?.nozzles as { tag: string }[] | undefined;
-    if (nozzles?.length) {
-      nozzles.forEach(n => equipment.push({ tag: n.tag, module: 'Nozzle' }));
-    }
-    
-    // Long welds
-    const longWelds = currentProject.modules?.longwelds as { tag: string }[] | undefined;
-    if (longWelds?.length) {
-      longWelds.forEach(w => equipment.push({ tag: w.tag, module: 'Long Weld' }));
-    }
-    
-    // Circ welds
-    const circWelds = currentProject.modules?.circwelds as { tag: string }[] | undefined;
-    if (circWelds?.length) {
-      circWelds.forEach(w => equipment.push({ tag: w.tag, module: 'Circ Weld' }));
-    }
-    
-    // Pipe joints
-    const pipeJoints = currentProject.modules?.pipejoints as { tag: string }[] | undefined;
-    if (pipeJoints?.length) {
-      pipeJoints.forEach(p => equipment.push({ tag: p.tag, module: 'Pipe Joint' }));
-    }
-
-    // Update offer data with auto-populated equipment
     setOfferData(prev => ({
       ...prev,
       projectDetails: {
         ...prev.projectDetails,
-        projectName: prev.projectDetails.projectName || currentProject.vesselName || '',
-        ourReference: prev.projectDetails.ourReference || currentProject.jobNumber || '',
+        // Always sync from project - user can override in offer sheet if needed
+        projectName: currentProject.vesselName || prev.projectDetails.projectName || '',
+        ourReference: currentProject.jobNumber || prev.projectDetails.ourReference || '',
       },
     }));
-  }, [currentProject]);
+  }, [currentProject?.vesselName, currentProject?.jobNumber]);
+
+  // Initialize equipment text from stored data
+  useEffect(() => {
+    if (offerData.equipment.length > 0) {
+      setEquipmentText(offerData.equipment.map(e => e.tag).join('\n'));
+    }
+  }, []);
 
   // Save offer data to project
   const saveOfferData = () => {
@@ -390,12 +373,13 @@ export function OfferModule() {
               <div className="form-group" style={{ gridColumn: '1 / -1' }}>
                 <label>Equipment Description (for offer sheet)</label>
                 <textarea
-                  value={offerData.equipment.map(e => `${e.quantity}x ${e.tag} - ${e.description}`).join('\n')}
-                  onChange={(e) => {
-                    // Parse textarea into equipment items
-                    const lines = e.target.value.split('\n').filter(l => l.trim());
+                  value={equipmentText}
+                  onChange={(e) => setEquipmentText(e.target.value)}
+                  onBlur={() => {
+                    // Parse into equipment items only when leaving the field
+                    const lines = equipmentText.split('\n').filter(l => l.trim());
                     const items = lines.map(line => ({
-                      tag: line,
+                      tag: line.trim(),
                       description: '',
                       quantity: 1,
                       included: true,
