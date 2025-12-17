@@ -155,10 +155,10 @@ export function PipeJointsModule() {
   };
 
   const deleteJoint = (id: string) => {
-    if (joints.length <= 1) return;
     updateJoints(prev => prev.filter(j => j.id !== id));
     if (selectedJointId === id) {
-      setSelectedJointId(joints.find(j => j.id !== id)?.id || null);
+      const remaining = joints.filter(j => j.id !== id);
+      setSelectedJointId(remaining.length > 0 ? remaining[0].id : null);
     }
   };
 

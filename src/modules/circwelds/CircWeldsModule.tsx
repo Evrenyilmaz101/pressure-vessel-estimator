@@ -209,10 +209,10 @@ export function CircWeldsModule() {
   };
 
   const deleteWeld = (id: string) => {
-    if (welds.length <= 1) return;
     updateWelds(prev => prev.filter(w => w.id !== id));
     if (selectedWeldId === id) {
-      setSelectedWeldId(welds.find(w => w.id !== id)?.id || null);
+      const remaining = welds.filter(w => w.id !== id);
+      setSelectedWeldId(remaining.length > 0 ? remaining[0].id : null);
     }
   };
 

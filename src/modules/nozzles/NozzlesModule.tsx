@@ -151,10 +151,10 @@ export function NozzlesModule() {
 
   // Delete nozzle
   const deleteNozzle = (id: string) => {
-    if (nozzles.length <= 1) return;
     setNozzles(prev => prev.filter(n => n.id !== id));
     if (selectedId === id) {
-      setSelectedId(nozzles.find(n => n.id !== id)?.id || null);
+      const remaining = nozzles.filter(n => n.id !== id);
+      setSelectedId(remaining.length > 0 ? remaining[0].id : null);
     }
   };
 
