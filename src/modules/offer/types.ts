@@ -66,20 +66,33 @@ export interface OfferMaterials {
 
 export interface OfferNDEItem {
   description: string;
-  coverage: '100%' | 'Spot' | 'None';
+  coverage: number; // 0, 10, 20, ... 100 (percentage)
 }
 
 export interface OfferNDE {
+  // General
   visualExamination: OfferNDEItem;
+  
+  // Long Welds
   longWeldsUT: OfferNDEItem;
-  longWeldsDPI: OfferNDEItem;
+  longWeldsMPI: OfferNDEItem;
+  
+  // Circ Welds
   circWeldsUT: OfferNDEItem;
-  circWeldsDPI: OfferNDEItem;
+  circWeldsMPI: OfferNDEItem;
+  
+  // Nozzles
   nozzleFlangeRT: OfferNDEItem;
   nozzleShellUT: OfferNDEItem;
+  nozzleShellMPI: OfferNDEItem;
+  
+  // Attachments
+  liftingAttachmentsMPI: OfferNDEItem;
+  externalAttachmentsMPI: OfferNDEItem;
+  internalAttachmentsMPI: OfferNDEItem;
+  
+  // Other
   tubeWeldsDPI: OfferNDEItem;
-  liftingAttachments: OfferNDEItem;
-  externalAttachments: OfferNDEItem;
 }
 
 export interface OfferHeatTreatment {
@@ -227,20 +240,33 @@ export const DEFAULT_DESIGN_CODES: OfferDesignCodes = {
 
 export const DEFAULT_NDE_ITEM: OfferNDEItem = {
   description: '',
-  coverage: 'None',
+  coverage: 0,
 };
 
 export const DEFAULT_NDE: OfferNDE = {
-  visualExamination: { description: 'Visual examination', coverage: '100%' },
-  longWeldsUT: { description: 'UT + DPI/MPI of long welds', coverage: '100%' },
-  longWeldsDPI: { description: 'DPI/MPI of long welds', coverage: '100%' },
-  circWeldsUT: { description: 'UT + DPI/MPI of circ welds', coverage: '100%' },
-  circWeldsDPI: { description: 'DPI/MPI of circ welds', coverage: '100%' },
-  nozzleFlangeRT: { description: 'RT nozzle flange to neck welds', coverage: '100%' },
-  nozzleShellUT: { description: 'UT nozzle to shell welds', coverage: '100%' },
-  tubeWeldsDPI: { description: 'DPI of tube welds', coverage: 'None' },
-  liftingAttachments: { description: 'DPI/MPI lifting attachments', coverage: '100%' },
-  externalAttachments: { description: 'DPI/MPI external attachments', coverage: '100%' },
+  // General
+  visualExamination: { description: 'Visual examination', coverage: 100 },
+  
+  // Long Welds
+  longWeldsUT: { description: 'UT of long welds', coverage: 100 },
+  longWeldsMPI: { description: 'MPI/DPI of long welds', coverage: 100 },
+  
+  // Circ Welds
+  circWeldsUT: { description: 'UT of circ welds', coverage: 100 },
+  circWeldsMPI: { description: 'MPI/DPI of circ welds', coverage: 100 },
+  
+  // Nozzles
+  nozzleFlangeRT: { description: 'RT nozzle flange to neck welds', coverage: 100 },
+  nozzleShellUT: { description: 'UT nozzle to shell welds', coverage: 100 },
+  nozzleShellMPI: { description: 'MPI/DPI nozzle to shell welds', coverage: 100 },
+  
+  // Attachments
+  liftingAttachmentsMPI: { description: 'MPI/DPI lifting attachments', coverage: 100 },
+  externalAttachmentsMPI: { description: 'MPI/DPI external attachments', coverage: 100 },
+  internalAttachmentsMPI: { description: 'MPI/DPI internal attachments', coverage: 100 },
+  
+  // Other
+  tubeWeldsDPI: { description: 'DPI of tube welds', coverage: 0 },
 };
 
 export const DEFAULT_HEAT_TREATMENT: OfferHeatTreatment = {

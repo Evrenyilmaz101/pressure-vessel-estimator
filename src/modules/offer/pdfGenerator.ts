@@ -411,11 +411,11 @@ export function generateOfferPDF(offerData: OfferData, _project?: unknown) {
         <tbody>
           ${Object.entries(nde).map(([, item]) => {
             const ndeItem = item as OfferNDEItem;
-            if (ndeItem.coverage === 'None') return '';
+            if (ndeItem.coverage === 0) return '';
             return `
               <tr>
                 <td>${ndeItem.description}</td>
-                <td>${checkbox(true)} ${ndeItem.coverage}</td>
+                <td>${checkbox(true)} ${ndeItem.coverage}%</td>
               </tr>
             `;
           }).join('')}

@@ -3,7 +3,6 @@ import { useProject } from '../../project';
 import {
   type OfferData,
   type OfferNote,
-  type OfferNDEItem,
   type OfferMaterialItem,
   type OfferMilestoneItem,
   type OfferPricingItem,
@@ -148,7 +147,7 @@ export function OfferModule() {
   };
 
   // Handle NDE coverage change
-  const updateNDECoverage = (key: keyof typeof offerData.nde, coverage: '100%' | 'Spot' | 'None') => {
+  const updateNDECoverage = (key: keyof typeof offerData.nde, coverage: number) => {
     setOfferData(prev => ({
       ...prev,
       nde: {
@@ -157,6 +156,9 @@ export function OfferModule() {
       },
     }));
   };
+
+  // NDE percentage options
+  const NDE_PERCENTAGES = [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100];
 
   // Handle note toggle
   const toggleNote = (noteId: string) => {
@@ -595,32 +597,181 @@ export function OfferModule() {
       case 'nde':
         return (
           <div className="section-content">
-            <table className="nde-table">
-              <thead>
-                <tr>
-                  <th>Inspection Type</th>
-                  <th>Coverage</th>
-                </tr>
-              </thead>
-              <tbody>
-                {Object.entries(offerData.nde).map(([key, item]) => (
-                  <tr key={key}>
-                    <td>{(item as OfferNDEItem).description}</td>
-                    <td>
-                      <select
-                        className="coverage-select"
-                        value={(item as OfferNDEItem).coverage}
-                        onChange={(e) => updateNDECoverage(key as keyof typeof offerData.nde, e.target.value as '100%' | 'Spot' | 'None')}
-                      >
-                        <option value="100%">☑ 100%</option>
-                        <option value="Spot">☑ Spot</option>
-                        <option value="None">☐ Excluded</option>
-                      </select>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+            <div className="nde-groups">
+              {/* General */}
+              <div className="nde-group">
+                <h4>General</h4>
+                <div className="nde-row">
+                  <span className="nde-label">{offerData.nde.visualExamination.description}</span>
+                  <select
+                    className="coverage-select"
+                    value={offerData.nde.visualExamination.coverage}
+                    onChange={(e) => updateNDECoverage('visualExamination', Number(e.target.value))}
+                  >
+                    {NDE_PERCENTAGES.map(pct => (
+                      <option key={pct} value={pct}>{pct === 0 ? 'Excluded' : `${pct}%`}</option>
+                    ))}
+                  </select>
+                </div>
+              </div>
+
+              {/* Long Welds */}
+              <div className="nde-group">
+                <h4>Long Welds</h4>
+                <div className="nde-row">
+                  <span className="nde-label">{offerData.nde.longWeldsUT.description}</span>
+                  <select
+                    className="coverage-select"
+                    value={offerData.nde.longWeldsUT.coverage}
+                    onChange={(e) => updateNDECoverage('longWeldsUT', Number(e.target.value))}
+                  >
+                    {NDE_PERCENTAGES.map(pct => (
+                      <option key={pct} value={pct}>{pct === 0 ? 'Excluded' : `${pct}%`}</option>
+                    ))}
+                  </select>
+                </div>
+                <div className="nde-row">
+                  <span className="nde-label">{offerData.nde.longWeldsMPI.description}</span>
+                  <select
+                    className="coverage-select"
+                    value={offerData.nde.longWeldsMPI.coverage}
+                    onChange={(e) => updateNDECoverage('longWeldsMPI', Number(e.target.value))}
+                  >
+                    {NDE_PERCENTAGES.map(pct => (
+                      <option key={pct} value={pct}>{pct === 0 ? 'Excluded' : `${pct}%`}</option>
+                    ))}
+                  </select>
+                </div>
+              </div>
+
+              {/* Circ Welds */}
+              <div className="nde-group">
+                <h4>Circ Welds</h4>
+                <div className="nde-row">
+                  <span className="nde-label">{offerData.nde.circWeldsUT.description}</span>
+                  <select
+                    className="coverage-select"
+                    value={offerData.nde.circWeldsUT.coverage}
+                    onChange={(e) => updateNDECoverage('circWeldsUT', Number(e.target.value))}
+                  >
+                    {NDE_PERCENTAGES.map(pct => (
+                      <option key={pct} value={pct}>{pct === 0 ? 'Excluded' : `${pct}%`}</option>
+                    ))}
+                  </select>
+                </div>
+                <div className="nde-row">
+                  <span className="nde-label">{offerData.nde.circWeldsMPI.description}</span>
+                  <select
+                    className="coverage-select"
+                    value={offerData.nde.circWeldsMPI.coverage}
+                    onChange={(e) => updateNDECoverage('circWeldsMPI', Number(e.target.value))}
+                  >
+                    {NDE_PERCENTAGES.map(pct => (
+                      <option key={pct} value={pct}>{pct === 0 ? 'Excluded' : `${pct}%`}</option>
+                    ))}
+                  </select>
+                </div>
+              </div>
+
+              {/* Nozzles */}
+              <div className="nde-group">
+                <h4>Nozzles</h4>
+                <div className="nde-row">
+                  <span className="nde-label">{offerData.nde.nozzleFlangeRT.description}</span>
+                  <select
+                    className="coverage-select"
+                    value={offerData.nde.nozzleFlangeRT.coverage}
+                    onChange={(e) => updateNDECoverage('nozzleFlangeRT', Number(e.target.value))}
+                  >
+                    {NDE_PERCENTAGES.map(pct => (
+                      <option key={pct} value={pct}>{pct === 0 ? 'Excluded' : `${pct}%`}</option>
+                    ))}
+                  </select>
+                </div>
+                <div className="nde-row">
+                  <span className="nde-label">{offerData.nde.nozzleShellUT.description}</span>
+                  <select
+                    className="coverage-select"
+                    value={offerData.nde.nozzleShellUT.coverage}
+                    onChange={(e) => updateNDECoverage('nozzleShellUT', Number(e.target.value))}
+                  >
+                    {NDE_PERCENTAGES.map(pct => (
+                      <option key={pct} value={pct}>{pct === 0 ? 'Excluded' : `${pct}%`}</option>
+                    ))}
+                  </select>
+                </div>
+                <div className="nde-row">
+                  <span className="nde-label">{offerData.nde.nozzleShellMPI.description}</span>
+                  <select
+                    className="coverage-select"
+                    value={offerData.nde.nozzleShellMPI.coverage}
+                    onChange={(e) => updateNDECoverage('nozzleShellMPI', Number(e.target.value))}
+                  >
+                    {NDE_PERCENTAGES.map(pct => (
+                      <option key={pct} value={pct}>{pct === 0 ? 'Excluded' : `${pct}%`}</option>
+                    ))}
+                  </select>
+                </div>
+              </div>
+
+              {/* Attachments */}
+              <div className="nde-group">
+                <h4>Attachments</h4>
+                <div className="nde-row">
+                  <span className="nde-label">{offerData.nde.liftingAttachmentsMPI.description}</span>
+                  <select
+                    className="coverage-select"
+                    value={offerData.nde.liftingAttachmentsMPI.coverage}
+                    onChange={(e) => updateNDECoverage('liftingAttachmentsMPI', Number(e.target.value))}
+                  >
+                    {NDE_PERCENTAGES.map(pct => (
+                      <option key={pct} value={pct}>{pct === 0 ? 'Excluded' : `${pct}%`}</option>
+                    ))}
+                  </select>
+                </div>
+                <div className="nde-row">
+                  <span className="nde-label">{offerData.nde.externalAttachmentsMPI.description}</span>
+                  <select
+                    className="coverage-select"
+                    value={offerData.nde.externalAttachmentsMPI.coverage}
+                    onChange={(e) => updateNDECoverage('externalAttachmentsMPI', Number(e.target.value))}
+                  >
+                    {NDE_PERCENTAGES.map(pct => (
+                      <option key={pct} value={pct}>{pct === 0 ? 'Excluded' : `${pct}%`}</option>
+                    ))}
+                  </select>
+                </div>
+                <div className="nde-row">
+                  <span className="nde-label">{offerData.nde.internalAttachmentsMPI.description}</span>
+                  <select
+                    className="coverage-select"
+                    value={offerData.nde.internalAttachmentsMPI.coverage}
+                    onChange={(e) => updateNDECoverage('internalAttachmentsMPI', Number(e.target.value))}
+                  >
+                    {NDE_PERCENTAGES.map(pct => (
+                      <option key={pct} value={pct}>{pct === 0 ? 'Excluded' : `${pct}%`}</option>
+                    ))}
+                  </select>
+                </div>
+              </div>
+
+              {/* Other */}
+              <div className="nde-group">
+                <h4>Other</h4>
+                <div className="nde-row">
+                  <span className="nde-label">{offerData.nde.tubeWeldsDPI.description}</span>
+                  <select
+                    className="coverage-select"
+                    value={offerData.nde.tubeWeldsDPI.coverage}
+                    onChange={(e) => updateNDECoverage('tubeWeldsDPI', Number(e.target.value))}
+                  >
+                    {NDE_PERCENTAGES.map(pct => (
+                      <option key={pct} value={pct}>{pct === 0 ? 'Excluded' : `${pct}%`}</option>
+                    ))}
+                  </select>
+                </div>
+              </div>
+            </div>
           </div>
         );
 
