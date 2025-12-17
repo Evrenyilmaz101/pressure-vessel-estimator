@@ -312,9 +312,9 @@ export function CircWeldsModule() {
                       <td className="total-cell">{totalPer.toFixed(2)}</td>
                       <td className="total-cell">{totalQty.toFixed(2)}</td>
                       <td className="actions-cell">
-                        <button onClick={() => { setSelectedWeldId(weld.id); setActiveTab('editor'); }} title="Edit">✏️</button>
-                        <button onClick={() => duplicateWeld(weld)} title="Duplicate">📋</button>
-                        <button onClick={() => deleteWeld(weld.id)} disabled={welds.length <= 1} title="Delete">🗑️</button>
+                        <button className="btn-action" onClick={() => { setSelectedWeldId(weld.id); setActiveTab('editor'); }}>Edit</button>
+                        <button className="btn-action" onClick={() => duplicateWeld(weld)}>Duplicate</button>
+                        <button className="btn-action btn-delete" onClick={() => deleteWeld(weld.id)} disabled={welds.length <= 1}>Delete</button>
                       </td>
                     </tr>
                   );
@@ -531,7 +531,7 @@ export function CircWeldsModule() {
             </section>
 
             <section className="section">
-              <h3>📊 Activity Codes</h3>
+              <h3>Activity Codes</h3>
               {currentWeld.activityCodes && (
                 <div className="codes-grid">
                   <div className="code-box"><span className="code">CRANE</span><span>{currentWeld.activityCodes.CRANE.toFixed(2)}h</span></div>

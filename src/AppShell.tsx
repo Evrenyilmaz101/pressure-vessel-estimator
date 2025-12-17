@@ -6,6 +6,7 @@ import { NozzlesModule } from './modules/nozzles';
 import { LongWeldsModule } from './modules/longwelds';
 import { CircWeldsModule } from './modules/circwelds';
 import { PipeJointsModule } from './modules/pipejoints';
+import { OfferModule } from './modules/offer';
 import './AppShell.css';
 
 type ViewType = 'summary' | ModuleId | 'settings';
@@ -106,6 +107,10 @@ export function AppShell() {
       return <PipeJointsModule />;
     }
 
+    if (activeView === 'offer') {
+      return <OfferModule />;
+    }
+
     // Placeholder for other modules
     if (moduleInfo) {
       return <PlaceholderModule module={moduleInfo} />;
@@ -118,12 +123,12 @@ export function AppShell() {
     <div className="app-shell">
       <header className="app-header">
         <div className="header-left">
-          <h1>🏭 Pressure Vessel Estimator</h1>
+          <h1>Pressure Vessel Estimator</h1>
         </div>
 
         <div className="header-right">
           <button className="btn-save" onClick={save}>
-            💾 Save
+            Save
             {hasUnsavedChanges && <span className="unsaved-dot">●</span>}
           </button>
           
@@ -132,7 +137,7 @@ export function AppShell() {
               className="btn-projects" 
               onClick={() => setShowProjectMenu(!showProjectMenu)}
             >
-              📁 Projects ▾
+              Projects ▾
             </button>
             
             {showProjectMenu && (
@@ -208,7 +213,7 @@ export function AppShell() {
           <span className="job-label">DESCRIPTION:</span>
           <span className="job-value">{currentProject?.vesselName || 'Untitled'}</span>
         </div>
-        <button className="btn-edit-job" onClick={() => setShowJobEdit(true)}>✏️ Edit</button>
+        <button className="btn-edit-job" onClick={() => setShowJobEdit(true)}>Edit</button>
         {hasUnsavedChanges && <span className="unsaved-indicator">● Unsaved</span>}
       </div>
 
@@ -245,7 +250,7 @@ export function AppShell() {
           className={`nav-item summary ${activeView === 'summary' ? 'active' : ''}`}
           onClick={() => setActiveView('summary')}
         >
-          📊 Summary
+          Summary
         </button>
         
         {MODULES.map(mod => (
@@ -254,7 +259,7 @@ export function AppShell() {
             className={`nav-item ${activeView === mod.id ? 'active' : ''}`}
             onClick={() => setActiveView(mod.id)}
           >
-            {mod.icon} {mod.name}
+            {mod.name}
           </button>
         ))}
 
@@ -262,7 +267,7 @@ export function AppShell() {
           className={`nav-item settings ${activeView === 'settings' ? 'active' : ''}`}
           onClick={() => setActiveView('settings')}
         >
-          ⚙️ Settings
+          Settings
         </button>
       </nav>
 
@@ -332,7 +337,7 @@ function SettingsPanel({ settings, onUpdate, onSave }: SettingsPanelProps) {
   return (
     <div className="settings-panel">
       <div className="settings-header">
-        <h2>⚙️ Settings</h2>
+        <h2>Settings</h2>
         <div className="settings-tabs">
           <button 
             className={activeTab === 'general' ? 'active' : ''} 
@@ -347,7 +352,7 @@ function SettingsPanel({ settings, onUpdate, onSave }: SettingsPanelProps) {
             🔗 Pipe Joint Settings
           </button>
         </div>
-        <button className="btn-save" onClick={onSave}>💾 Save Settings</button>
+        <button className="btn-save" onClick={onSave}>Save Settings</button>
       </div>
 
       {activeTab === 'general' && (
@@ -760,7 +765,7 @@ function PipeJointSettingsPanel() {
                     </div>
                   </div>
                   <button className="btn-configure" onClick={startEdit}>
-                    {isConfigured ? '✏️ Edit Configuration' : '+ Configure This Size'}
+                    {isConfigured ? 'Edit Configuration' : '+ Configure This Size'}
                   </button>
                 </>
               ) : (

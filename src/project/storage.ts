@@ -102,6 +102,7 @@ export function createEmptyProject(): VesselProject {
       pipejoints: null,
       internals: null,
       externals: null,
+      offer: null,
     },
   };
 }

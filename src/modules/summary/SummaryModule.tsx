@@ -63,7 +63,6 @@ export function SummaryModule() {
             const summary = currentProject?.summaries[mod.id];
             return (
               <div key={mod.id} className={`module-card ${summary ? 'has-data' : ''}`}>
-                <div className="module-icon">{mod.icon}</div>
                 <div className="module-info">
                   <h4>{mod.name}</h4>
                   {summary ? (

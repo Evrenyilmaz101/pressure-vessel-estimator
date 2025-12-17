@@ -3,7 +3,7 @@ import type { SharedSettings, ModuleSummary } from '../shared/types';
 /**
  * Module identifiers
  */
-export type ModuleId = 'nozzles' | 'longwelds' | 'circwelds' | 'pipejoints' | 'internals' | 'externals';
+export type ModuleId = 'nozzles' | 'longwelds' | 'circwelds' | 'pipejoints' | 'internals' | 'externals' | 'offer';
 
 /**
  * Module metadata
@@ -11,7 +11,6 @@ export type ModuleId = 'nozzles' | 'longwelds' | 'circwelds' | 'pipejoints' | 'i
 export interface ModuleInfo {
   id: ModuleId;
   name: string;
-  icon: string;
   description: string;
 }
 
@@ -19,12 +18,13 @@ export interface ModuleInfo {
  * All available modules
  */
 export const MODULES: ModuleInfo[] = [
-  { id: 'nozzles', name: 'Nozzles', icon: '🔩', description: 'Nozzle-to-shell welds' },
-  { id: 'longwelds', name: 'Long Welds', icon: '📏', description: 'Longitudinal seam welds' },
-  { id: 'circwelds', name: 'Circ Welds', icon: '⭕', description: 'Circumferential welds' },
-  { id: 'pipejoints', name: 'Pipe Joints', icon: '🔗', description: 'Pipe butt weld joints' },
-  { id: 'internals', name: 'Internals', icon: '📦', description: 'Internal attachments' },
-  { id: 'externals', name: 'Externals', icon: '🔧', description: 'External attachments' },
+  { id: 'nozzles', name: 'Nozzles', description: 'Nozzle-to-shell welds' },
+  { id: 'longwelds', name: 'Long Welds', description: 'Longitudinal seam welds' },
+  { id: 'circwelds', name: 'Circ Welds', description: 'Circumferential welds' },
+  { id: 'pipejoints', name: 'Pipe Joints', description: 'Pipe butt weld joints' },
+  { id: 'internals', name: 'Internals', description: 'Internal attachments' },
+  { id: 'externals', name: 'Externals', description: 'External attachments' },
+  { id: 'offer', name: 'Offer Sheet', description: 'Generate scope of works' },
 ];
 
 /**
@@ -46,6 +46,7 @@ export interface VesselProject {
     pipejoints?: unknown;   // PipeJointItem[]
     internals?: unknown;    // InternalItem[]
     externals?: unknown;    // ExternalItem[]
+    offer?: unknown;        // OfferData
   };
   
   // Cached summaries for quick display

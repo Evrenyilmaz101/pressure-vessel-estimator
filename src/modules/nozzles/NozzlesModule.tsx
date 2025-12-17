@@ -222,8 +222,8 @@ export function NozzlesModule() {
     <div className="nozzles-module">
       <div className="module-toolbar">
         <div className="toolbar-left">
-          <button className={view === 'list' ? 'active' : ''} onClick={() => setView('list')}>📋 List</button>
-          <button className={view === 'editor' ? 'active' : ''} onClick={() => setView('editor')}>✏️ Editor</button>
+          <button className={view === 'list' ? 'active' : ''} onClick={() => setView('list')}>List</button>
+          <button className={view === 'editor' ? 'active' : ''} onClick={() => setView('editor')}>Editor</button>
         </div>
         <div className="toolbar-center">
           <button className="btn-add" onClick={addNozzle}>+ Add Nozzle</button>
@@ -281,9 +281,9 @@ export function NozzlesModule() {
                     <td className="total-cell">{totalPer.toFixed(2)}</td>
                     <td className="total-cell">{totalQty.toFixed(2)}</td>
                     <td className="actions-cell">
-                      <button onClick={() => { setSelectedId(nozzle.id); setView('editor'); }} title="Edit">✏️</button>
-                      <button onClick={() => duplicateNozzle(nozzle)} title="Duplicate">📋</button>
-                      <button onClick={() => deleteNozzle(nozzle.id)} disabled={nozzles.length <= 1} title="Delete">🗑️</button>
+                      <button className="btn-action" onClick={() => { setSelectedId(nozzle.id); setView('editor'); }}>Edit</button>
+                      <button className="btn-action" onClick={() => duplicateNozzle(nozzle)}>Duplicate</button>
+                      <button className="btn-action btn-delete" onClick={() => deleteNozzle(nozzle.id)} disabled={nozzles.length <= 1}>Delete</button>
                     </td>
                   </tr>
                 );
@@ -424,7 +424,7 @@ export function NozzlesModule() {
             </section>
 
             <section className="section">
-              <h3>📊 Activity Codes</h3>
+              <h3>Activity Codes</h3>
               {selectedNozzle.activityCodes && (
                 <div className="codes-grid">
                   {Object.entries(selectedNozzle.activityCodes).map(([code, hours]) => (
